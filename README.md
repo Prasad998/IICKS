@@ -9,7 +9,15 @@ The platform follows a microservices-based architecture:
 
 **Support Ticket → Spring Boot API → Python NLP Service → Classification & Similarity Search → Results**
 ![End-to-end architecture](docs/architecture.png)
-
+```
+CATEGORY_ID_PREFIX = {
+    "Authentication": 1,
+    "Network": 2,
+    "Application": 3,
+    "Endpoint": 4,
+    "Database": 5
+}
+```
 ## Project Layout
 
 ```text
