@@ -36,6 +36,15 @@ You should now see `Ran 6 tests / OK` — this would have failed before the `htt
 
 **Docker Compose** (all services, incl. Redis + Kafka) — from repo root: `docker compose up --build`.
 
+
+
+```
+*Load-tested the incident-triage API with Locust at 50 concurrent users;
+identified that synchronous FastAPI endpoints performing CPU-bound TF-IDF inference queued under Python's GIL,
+causing p95 latency to degrade from ~500ms to ~5.2s under sustained concurrency 
+— diagnosed the bottleneck as thread-pool saturation rather than I/O wait, 
+informing a scale-out strategy (multi-process workers) over further code optimization
+```
 Yes. And I would **not put the 100-person/time-saved calculation into the resume yet**. First run the load test, then we can use a real performance metric. For the business-impact number, we can include a **modeled efficiency improvement** only if we clearly base it on an explicit assumption.
 
 More importantly, your current Axtria section is getting too dense. **IICKS should be a separate project**, because otherwise it looks like you built it at Axtria. That distinction matters.
