@@ -1,5 +1,5 @@
 # IICKS  (Intelligent Incident Categorization & Knowledge Search) 
-### _(for IBM)_
+### _(Prototype of what I made for IBM in 2021-2022)_
 
 An enterprise NLP platform designed to automate IT incident triage and knowledge discovery for large-scale support operations.\
 A Spring Boot API gateway receives support tickets, forwards them to a Python ML inference service, and returns ticket classification, similar historical incidents, and recommended knowledge-base articles. The Python service also publishes Kafka workflow events and can cache repeated analysis responses in Redis to help support teams resolve incidents faster.
