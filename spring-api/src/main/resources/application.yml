@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+
+nlp:
+  service:
+    base-url: ${NLP_SERVICE_URL:http://127.0.0.1:8000}

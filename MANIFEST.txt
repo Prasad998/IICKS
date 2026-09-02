@@ -1,0 +1,33 @@
+FILES TO REPLACE / ADD IN YOUR EXISTING IICKS REPO
+====================================================
+Unzip this and copy each file into the matching path in your repo root
+(same relative paths as shown). Overwrite existing files; the three
+scripts/ files are new additions.
+
+MODIFIED
+--------
+
+
+
+
+
+
+
+
+The number that matters: 95% vs TF-IDF's 98%
+
+BERT came back lower than your TF-IDF baseline.
+ This is exactly the scenario I flagged before you ran it, not a sign anything went wrong.
+  Here's why, concretely: your dataset was built (by build_dataset.py)
+   so each category draws from an almost entirely separate vocabulary 
+   — Authentication uses SAP/Okta/MFA words, Network uses VPN/Cisco/latency words, 
+   Database uses Oracle/replication/deadlock words, and so on, with almost no overlap
+    between categories. That's precisely the condition where a dumb bag-of-words method wins.
+  --If the vocabulary itself is already a near-perfect signal
+   there's nothing for BERT's contextual understanding to add 
+   — and BERT has 110 million parameters to overfit with on only 800 training examples, 
+   which is a plausible reason it landed slightly behind rather than ahead.
+
+   That's a real finding, and arguably a better thing to be able to say in an interview 
+   than "I used BERT because it's newer" — you actually measured it and can explain
+   why the simpler model won.
