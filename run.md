@@ -53,7 +53,7 @@ You should now see `Ran 6 tests / OK` — this would have failed before the `htt
 | Overall throughput | — | — | **~13.8 req/s** sustained over the run |
 
 
-## What actually happened, second by second
+## Workflow Analysis
 
 Early in the ramp-up (10–20 concurrent users), median response time was **140–500ms** — fast. 
 As concurrency climbed to and held at 50 users, median response time climbed steadily to **2,700–2,900ms**,
@@ -61,7 +61,7 @@ and stayed there for the rest of the 2-minute run rather than stabilizing lower.
 That's not noise — it's a saturation curve. 
 **50 concurrent users is already past this setup's comfortable capacity.**
 
-## Why this happens??
+## Intuition
 
 `analyze_ticket()` in `main.py` is a plain `def`, not `async def`. FastAPI/Starlette runs synchronous endpoints in a bounded background thread pool. But the actual work inside that endpoint — TF-IDF vectorization plus cosine similarity against ~2,000 stored vectors — is CPU-bound Python code, and Python's GIL means only one thread can execute Python bytecode at a time, *regardless of how many threads are in the pool*. So 50 concurrent requests don't run in parallel — they queue and take turns on one CPU core. That's exactly the linear-latency-growth-under-fixed-concurrency pattern in your data.
 
