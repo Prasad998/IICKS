@@ -98,6 +98,23 @@ That's not noise — it's a saturation curve.
 
 * Implemented a configurable **TF-IDF / BERT / Sentence-BERT model backend** with graceful fallback and dependency validation, enabling experimentation across classical NLP and transformer-based approaches without changing the service architecture.
 
+
+
+**Hows for IICKS**
+
+IICKS — Incident Categorization & Knowledge Search (Personal Project, 2026) · [GitHub link]
+
+Architected a 3-service incident-triage platform (Next.js frontend, Spring Boot reactive API gateway, Python FastAPI NLP service) communicating over a non-blocking WebClient pipeline end-to-end.
+
+Diagnosed and eliminated a production-grade concurrency defect where blocking calls on Reactor Netty's event-loop threads caused intermittent 500 errors under WebFlux; refactored the full gateway request path to Mono<T> reactive chains.
+
+Built a TF-IDF centroid classifier achieving 98% accuracy / 0.98 macro-F1 across 5 incident categories on an 800/200 stratified holdout split; benchmarked against a fine-tuned BERT classifier (95% accuracy) and identified why the simpler model won on this data — an evidence-based model-selection decision, not a default choice.
+
+Engineered a pluggable model-backend abstraction (TF-IDF / BERT / Sentence-BERT) with automatic dependency-aware fallback, preventing service crashes from missing model artifacts or misconfiguration.
+
+Audited a 1,000-row synthetic dataset and found only 21% of rows were textually unique despite full category balance; built a combinatorial data-generation pipeline that raised uniqueness to 100% while preserving every existing ID and category distribution, eliminating duplicate results in similarity search.
+
+Load-tested the system with Locust at 50 concurrent users (1,655 requests, 0 failures); diagnosed p95 latency degradation from ~500ms to ~5.2s as GIL-bound thread-pool saturation on synchronous CPU-bound inference — a root-cause finding that pointed to horizontal worker scaling over further code-level optimization.
 ---
 
 This is where I would add one more bullet **after we actually run the test**:
@@ -183,9 +200,3 @@ Likewise, don't call the system **production-grade** simply because you designed
 You can say:
 
 > **"production-oriented 3-tier incident-triage platform"**
-
-if you want that signal.
-
-This keeps your resume **ambitious but interview-defensible**, which is exactly what you want at the Senior GenAI/Applied AI level.
-
-**Next step:** run the Locust test we discussed. Once you give me the `results_direct_stats.csv` and `results_gateway_stats.csv` (or simply paste the Locust output), I can calculate the **RPS, p50/p95/p99, throughput degradation, gateway overhead, and concurrency ceiling** and turn the actual numbers into the final IICKS bullet.
