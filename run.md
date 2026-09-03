@@ -129,7 +129,6 @@ For example, if your actual result turns out to be:
 
 then that's what goes on the resume.
 
-Don't worry if the number isn't huge. **A measured 37 RPS is more credible and valuable than a fabricated 10,000 RPS.**
 
 ---
 
@@ -175,29 +174,3 @@ And I'd actually use a more conservative scenario for your interview story:
 | Potential time saved |  **66.7 agent-hours/day** |
 | Weekly               | **~333 agent-hours/week** |
 
-So your defensible statement becomes:
-
-> **"Using a conservative scenario of 100 agents handling 10 tickets/day, I modeled approximately 67 agent-hours of potential time savings per day, assuming manual triage takes five minutes and AI-assisted verification takes one minute."**
-Modeled potential time savings of ~67 agent-hours/day for a 100-person support team, based on industry-benchmark manual triage time (3–8 min/ticket) versus measured system response time of [X]ms — projection, not a production-measured result."
-
-That's actually a **good interview answer** because you're demonstrating that you understand the difference between **measured engineering performance** and **projected business impact**.
-
----
-
-## One important correction to your existing IICKS bullet
-
-I would change:
-
-> "production-grade concurrency bug"
-
-to:
-
-> **"concurrency bottleneck"** or **"concurrency failure"**
-
-unless IICKS has genuinely been deployed in production.
-
-Likewise, don't call the system **production-grade** simply because you designed it like a production system.
-
-You can say:
-
-> **"production-oriented 3-tier incident-triage platform"**
