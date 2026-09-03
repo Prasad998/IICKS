@@ -178,6 +178,7 @@ And I'd actually use a more conservative scenario for your interview story:
 So your defensible statement becomes:
 
 > **"Using a conservative scenario of 100 agents handling 10 tickets/day, I modeled approximately 67 agent-hours of potential time savings per day, assuming manual triage takes five minutes and AI-assisted verification takes one minute."**
+Modeled potential time savings of ~67 agent-hours/day for a 100-person support team, based on industry-benchmark manual triage time (3–8 min/ticket) versus measured system response time of [X]ms — projection, not a production-measured result."
 
 That's actually a **good interview answer** because you're demonstrating that you understand the difference between **measured engineering performance** and **projected business impact**.
 
