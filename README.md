@@ -87,6 +87,7 @@ Top similar tickets + KB articles
   v
 Frontend dashboard / API response
 ```
+<img width="4471" height="7156" alt="diagram" src="https://github.com/user-attachments/assets/7781a179-9b15-4207-960d-c27026102d1c" />
 
 ### Component Status
 
